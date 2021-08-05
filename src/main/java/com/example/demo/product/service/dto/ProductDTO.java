@@ -13,10 +13,10 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 @ToString
 public class ProductDTO implements Serializable {
-  private Long id;
-  private String productName;
-  private BigDecimal price;
-  private String description;
-  private String category;
-  private int availability;
+    private Long id;
+    private String productName;
+    private BigDecimal price;
+    private String description;
+    private String category;
+    private int availability;
 }

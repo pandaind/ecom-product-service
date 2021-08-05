@@ -7,13 +7,15 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-/** Mapper for the entity {@link Product} and its DTO {@link ProductDTO}. */
+/**
+ * Mapper for the entity {@link Product} and its DTO {@link ProductDTO}.
+ */
 @Mapper(
-    componentModel = "spring",
-    uses = {})
+        componentModel = "spring",
+        uses = {})
 public interface ProductMapper extends EntityMapper<ProductDTO, Product> {
-  @Named("id")
-  @BeanMapping(ignoreByDefault = true)
-  @Mapping(target = "id", source = "id")
-  ProductDTO toDtoId(Product product);
+    @Named("id")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    ProductDTO toDtoId(Product product);
 }

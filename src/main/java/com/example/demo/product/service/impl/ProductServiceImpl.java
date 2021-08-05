@@ -18,48 +18,48 @@ import java.util.Optional;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-  private final ProductRepository repository;
+    private final ProductRepository repository;
 
-  private final ProductMapper mapper;
+    private final ProductMapper mapper;
 
-  @Autowired
-  public ProductServiceImpl(ProductRepository repository, ProductMapper mapper) {
-    this.repository = repository;
-    this.mapper = mapper;
-  }
+    @Autowired
+    public ProductServiceImpl(ProductRepository repository, ProductMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
-  @Override
-  public List<ProductDTO> findAll() {
-    log.debug("Request to get all Products");
-    return this.mapper.toDto(this.repository.findAll());
-  }
+    @Override
+    public List<ProductDTO> findAll() {
+        log.debug("Request to get all Products");
+        return this.mapper.toDto(this.repository.findAll());
+    }
 
-  @Override
-  public List<ProductDTO> findAllByCategory(String category) {
-    return this.mapper.toDto(this.repository.findAllByCategory(category));
-  }
+    @Override
+    public List<ProductDTO> findAllByCategory(String category) {
+        return this.mapper.toDto(this.repository.findAllByCategory(category));
+    }
 
-  @Override
-  public Optional<ProductDTO> findById(Long id) {
-    return this.repository.findById(id).map(this.mapper::toDto);
-  }
+    @Override
+    public Optional<ProductDTO> findById(Long id) {
+        return this.repository.findById(id).map(this.mapper::toDto);
+    }
 
-  @Override
-  public List<ProductDTO> findAllByName(String name) {
-    return this.mapper.toDto(this.repository.findAllByProductName(name));
-  }
+    @Override
+    public List<ProductDTO> findAllByName(String name) {
+        return this.mapper.toDto(this.repository.findAllByProductName(name));
+    }
 
-  @Override
-  public ProductDTO add(ProductDTO productDTO) {
-    log.debug("Request to save Product : {}", productDTO);
-    Product product = this.mapper.toEntity(productDTO);
-    product = this.repository.save(product);
-    return this.mapper.toDto(product);
-  }
+    @Override
+    public ProductDTO add(ProductDTO productDTO) {
+        log.debug("Request to save Product : {}", productDTO);
+        Product product = this.mapper.toEntity(productDTO);
+        product = this.repository.save(product);
+        return this.mapper.toDto(product);
+    }
 
-  @Override
-  public void delete(Long productId) {
-    log.debug("Request to delete Product : {}", productId);
-    this.repository.deleteById(productId);
-  }
+    @Override
+    public void delete(Long productId) {
+        log.debug("Request to delete Product : {}", productId);
+        this.repository.deleteById(productId);
+    }
 }
