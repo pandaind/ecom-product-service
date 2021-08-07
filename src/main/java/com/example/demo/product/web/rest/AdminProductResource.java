@@ -18,9 +18,10 @@ import java.net.URISyntaxException;
 @RequestMapping("/admin")
 public class AdminProductResource {
     private static final String ENTITY_NAME = "Product";
-    private final ProductService service;
     @Value("${spring.application.name}")
     private String applicationName;
+
+    private final ProductService service;
 
     @Autowired
     public AdminProductResource(ProductService service) {
@@ -28,13 +29,13 @@ public class AdminProductResource {
     }
 
     @PostMapping(value = "/products")
-    private ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO product) throws URISyntaxException {
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO product) throws URISyntaxException {
         log.debug("REST request to save Product : {}", product);
         if (product.getId() != null) {
             throw new BadRequestAlertException("A new product cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
-        ProductDTO result = service.add(product);
+        ProductDTO result = this.service.add(product);
 
         return ResponseEntity.created(new URI("/admin/products/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(applicationName,
@@ -43,9 +44,9 @@ public class AdminProductResource {
     }
 
     @DeleteMapping(value = "/products/{id}")
-    private ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id) {
         log.debug("REST request to delete Product with id : {}", id);
-        service.delete(id);
+        this.service.delete(id);
         return ResponseEntity.noContent()
                 .headers(HeaderUtil.createEntityDeletionAlert(applicationName,
                         false, ENTITY_NAME, id.toString())).build();
