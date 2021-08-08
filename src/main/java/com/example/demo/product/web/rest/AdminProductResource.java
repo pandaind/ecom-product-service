@@ -15,7 +15,7 @@ import java.net.URISyntaxException;
 
 @Slf4j
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AdminProductResource {
     private static final String ENTITY_NAME = "Product";
     @Value("${spring.application.name}")

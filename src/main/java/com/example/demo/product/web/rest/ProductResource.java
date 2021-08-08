@@ -13,6 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequestMapping("/api")
 public class ProductResource {
 
     private final ProductService service;
