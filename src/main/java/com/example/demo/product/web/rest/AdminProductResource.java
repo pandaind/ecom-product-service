@@ -18,10 +18,9 @@ import java.net.URISyntaxException;
 @RequestMapping("/api/admin")
 public class AdminProductResource {
     private static final String ENTITY_NAME = "Product";
+    private final ProductService service;
     @Value("${spring.application.name}")
     private String applicationName;
-
-    private final ProductService service;
 
     @Autowired
     public AdminProductResource(ProductService service) {
