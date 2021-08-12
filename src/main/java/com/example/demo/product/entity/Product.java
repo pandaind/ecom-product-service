@@ -42,9 +42,8 @@ public class Product {
     @NotNull
     private String category;
 
-    @Column(name = "availability")
-    @NotNull
-    private int availability;
+    @Column(name = "sku_code", nullable = false, unique = true)
+    private String skuCode;
 
     @Override
     public boolean equals(Object o) {
@@ -62,22 +61,13 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{"
-                + "id="
-                + id
-                + ", productName='"
-                + productName
-                + '\''
-                + ", price="
-                + price
-                + ", description='"
-                + description
-                + '\''
-                + ", category='"
-                + category
-                + '\''
-                + ", availability="
-                + availability
-                + '}';
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", skuCode='" + skuCode + '\'' +
+                '}';
     }
 }
