@@ -1,29 +1,17 @@
 spring:
   profiles:
     active: dev
-  boot:
-    admin:
-      client:
-        url: http://localhost:9090
+  application:
+    name: product-service
 
 server:
   port: 0
-
-eureka:
-  client:
-    service-url:
-      default-zone: http://localhost:8761/eureka
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-    appname: product-service
 ---
 spring:
   config:
     activate:
       on-profile:
         - dev
-  application:
-    name: product-service
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
@@ -47,7 +35,18 @@ spring:
       hibernate:
         generate_statistics: false
         format_sql: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
 
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+    appname: product-service
 ---
 spring:
   config:
