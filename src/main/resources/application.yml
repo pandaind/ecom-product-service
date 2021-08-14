@@ -88,3 +88,6 @@ logging:
     net:
       sf:
         ehcache: debug
+eureka:
+  client:
+    enabled: false
