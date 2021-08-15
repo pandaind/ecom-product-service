@@ -39,6 +39,13 @@ spring:
     admin:
       client:
         url: http://localhost:9090
+  sleuth:
+    integration:
+      enabled: true
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://localhost:9411/
 
 eureka:
   client:
