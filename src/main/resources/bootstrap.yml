@@ -7,7 +7,7 @@ spring:
     config:
       uri: ${CONFIG_SERVER:http://localhost:8888}
       allow-override: true
-      name: producer-service
+      name: product-service
       profile: dev
       retry:
         initial-interval: 1000
