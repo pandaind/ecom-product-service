@@ -6,14 +6,6 @@ spring:
   cloud:
     config:
       uri: ${CONFIG_SERVER:http://localhost:8888}
-      allow-override: true
-      name: product-service
-      profile: dev
-      retry:
-        initial-interval: 1000
-        max-attempts: 6
-        max-interval: 2000
-        multiplier: 1.1
     bus:
       enabled: true
       refresh:
@@ -26,7 +18,7 @@ spring:
           auto-add-partitions: true
 
 server:
-  port: 0
+  port: 8080
 
 management:
   endpoints:
